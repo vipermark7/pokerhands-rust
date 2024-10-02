@@ -33,7 +33,6 @@ struct Card {
 
 type Hand = [Card; 5];
 
-
 fn main() {
     println!("Hello, world!");
     let games = HashMap::from([
@@ -42,9 +41,12 @@ fn main() {
         ("game3", "2H 3D 5S 9C KD|2C 3H 4S 8C KH"),
         ("game4", "2H 3D 5S 9C KD|2D 3H 5C 9S KH")
     ]);
-    let parsed = games.into_values()
-        .map(|game| game.split_once("|"));
-    let _ = dbg!(parsed);
+
+    let parsed = games.into_values();
+    for line in parsed {
+        let Some((black, white)) = line.split_once("|") else { todo!() };
+
+    }
 }
 
 /// return true of two of the cards have the same suit and same rank
